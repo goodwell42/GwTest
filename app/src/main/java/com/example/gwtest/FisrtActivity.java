@@ -2,8 +2,10 @@ package com.example.gwtest;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,11 +29,22 @@ public class FisrtActivity extends AppCompatActivity {
                 // 显式intent意图：在first基础上打开second，上下文加指定
                 // Intent intent = new Intent(FisrtActivity.this, SecondActivity.class);
                 // 隐式intent
-                // Intent intent = new Intent("com.example.activitytest.ACTION_START");
+                // Intent intent = new   Intent("com.example.activitytest.ACTION_START");
                 // intent.addCategory("com.example.activitytest.MY_CATEGORY");
-                Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse("https://goodwell42.github.io"));
-                startActivity(intent);
+                // 浏览器
+                // Intent intent = new Intent(Intent.ACTION_VIEW);
+                // intent.setData(Uri.parse("https://goodwell42.github.io"));
+                // 电话
+                // Intent intent = new Intent(Intent.ACTION_DIAL);
+                // intent.setData(Uri.parse("tel:18975251274"));
+                // 用putExtra向下一个活动传递数据
+                // String data = "Hello SecondActivity,goodwell";
+                // Intent intent = new Intent(FisrtActivity.this, SecondActivity.class);
+                // intent.putExtra("extra_data", data);
+                // startActivityForResult返回数据给上一个活动
+                Intent intent = new Intent(FisrtActivity.this, SecondActivity.class);
+                startActivityForResult(intent, 1);
+                // startActivity(intent);
             }
         });
     }
@@ -54,5 +67,18 @@ public class FisrtActivity extends AppCompatActivity {
             default:
         }
         return true;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case 1:
+                if (resultCode == RESULT_OK) {
+                    String returnedData = data.getStringExtra("data_return");
+                    Log.d("FisrtActivity", returnedData);
+                }
+                break;
+            default:
+        }
     }
 }
