@@ -12,11 +12,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-public class FisrtActivity extends AppCompatActivity {
+public class FisrtActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d("FirstActivity", this.toString());
         // 调用first_layout
         setContentView(R.layout.first_layout);
         // 设置Toast
@@ -42,9 +43,11 @@ public class FisrtActivity extends AppCompatActivity {
                 // Intent intent = new Intent(FisrtActivity.this, SecondActivity.class);
                 // intent.putExtra("extra_data", data);
                 // startActivityForResult返回数据给上一个活动
-                Intent intent = new Intent(FisrtActivity.this, SecondActivity.class);
-                startActivityForResult(intent, 1);
-                // startActivity(intent);
+                // Intent intent = new Intent(FisrtActivity.this, SecondActivity.class);
+                //startActivityForResult(intent, 1);
+                // startActivity(intent);2
+                Intent intent = new Intent(FisrtActivity.this, FisrtActivity.class);
+                startActivity(intent);
             }
         });
     }

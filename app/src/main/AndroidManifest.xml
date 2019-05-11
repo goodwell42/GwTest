@@ -26,7 +26,8 @@
         </activity>
         <activity
             android:name=".FisrtActivity"
-            android:label="This is my FirstActivity">
+            android:label="This is my FirstActivity"
+            android:launchMode="singleTop" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
